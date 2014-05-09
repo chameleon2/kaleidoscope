@@ -63,7 +63,7 @@ def main():
 
     # read in and add papers
     input_papers = [
-        #'Biomass_Bioenergy_test.nxml',
+        'Biomass_Bioenergy_test.nxml',
         'AAPS_test1.nxml',
         'ACS_Chem_Biol_test.nxml',
     ]
