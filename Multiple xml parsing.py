@@ -51,6 +51,7 @@ def add_paper(curs, paper):
     # add the paper to the database
     curs.execute("INSERT INTO papers VALUES (?,?,?,?)", (paper.id, paper.doi, paper.title, ref_string))
 
+# if parsing multiple folders, use '**/*.nxml' instead 
 import glob
 test = glob.glob('*.nxml')
 
