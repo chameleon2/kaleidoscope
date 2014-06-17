@@ -1,5 +1,15 @@
 import sqlite3
 
+def dump_json(db_dict):
+    # start JSON array
+    print('[')
+
+    for id, refs_list in db_dict.iteritems():
+        print('{{"id":{},"arxiv":"{}","allcats":"{}","refs":[{}]}}'.format(id, '', '', ','.join(str(r) for r in refs_list if r in db_dict)))
+
+    # end JSON array
+    print(']')
+
 def main():
     # connect to the database file (create if it doesn't exist)
     conn = sqlite3.connect('pubmed.db')
