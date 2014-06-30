@@ -25,6 +25,18 @@ def read_paper_from_xml(filename):
     title = root.find('.//article-title')
     journal = root.find('.//journal-title')
 
+    # Check if we have a DOI
+    if doi is None:
+        doi_text = ''
+    else:
+        doi_text = doi.text
+
+    # Check if we have a title
+    if title is None:
+        title_text = ''
+    else:
+        title_text = title.text.replace('\n', ' ')
+
     refs = []
     for element in root.findall('.//pub-id[@pub-id-type="pmid"]'):
         for i in element.iter():
@@ -32,14 +44,14 @@ def read_paper_from_xml(filename):
 
     print 'Filename:', filename
     print 'Paper id:', paper_id.text
-    print 'DOI:     ', doi.text
-    print 'Title:   ', title.text
+    print 'DOI:     ', doi_text
+    print 'Title:   ', title_text
     print 'Journal: ', journal.text
     print 'Ref list:', refs
     print ''
 
     # Create and return a new Paper object.
-    return Paper(paper_id.text, doi.text, title.text, journal.text, refs)
+    return Paper(paper_id.text, doi_text, title_text, journal.text, refs)
         
 def create_table(curs):
     # create the papers table (if it doesn't already exist)
