@@ -22,7 +22,10 @@ def main():
     db_dict = {}
     for entry in entries:
         id, refs = entry
-        refs_list = [int(r) for r in refs.split(',')]
+        if len(refs) == 0:
+            refs_list = []
+        else:
+            refs_list = [int(r) for r in refs.split(',')]
         db_dict[id] = refs_list
 
     # compute stats
